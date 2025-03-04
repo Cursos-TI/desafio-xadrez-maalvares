@@ -1,37 +1,59 @@
 #include <stdio.h> 
 
+//função recursiva para imprimir movimentação da Torre de acordo com a quantidade de casas informadas 
+void movimentacaoTorre(int t){
+    if (t > 0){
+        printf("Direita\n");
+        movimentacaoTorre(t - 1);
+    }    
+}
+
+//função recursiva para imprimir movimentação da Rainha de acordo com a quantidade de casas informadas
+void movimentacaoRainha(int r){
+    if (r > 0){
+        printf("Esquerda\n");
+        movimentacaoRainha(r - 1);
+    }    
+}
+
+//função recursiva para imprimir movimentação do Bispo de acordo com a quantidade de casas informadas usando loops aninhados
+void movimentacaoBispo(int b){
+    int i, j;
+    if (b > 0){
+        for (i = 0; i < 1; i++){
+            for (j = 0; j < 1; j++){
+                printf("Direita, ");
+            }
+            printf("Cima\n");
+        }        
+        movimentacaoBispo(b - 1);
+    }    
+}
+
 int main(){
-    int i = 0, j;
+    
     //Mover a torre 5 casas para a direita
     printf("Movimentação da Torre: \n");    
-    for (int t = 0; t < 5; t++){
-        printf("Direita.\n"); //imprime a direção do movimento de acordo com a quantidade de repetições necessárias
-    }
-
-    //Mover o bispo 5 casas para a diagonal direita
-    printf("\nMovimentação do Bispo: \n");    
-    for (int b = 0; b < 5; b++){
-        printf("Cima, Direita.\n"); //imprime a direção do movimento de acordo com a quantidade de repetições necessárias
-    }
+    movimentacaoTorre(5);
 
     //Mover a rainha 8 casas para a esquerda
     printf("\nMovimentação da Rainha: \n");    
-    for (int r = 0; r < 8; r++){
-        printf("Esquerda.\n"); //imprime a direção do movimento de acordo com a quantidade de repetições necessárias
-    }   
+    movimentacaoRainha(8); 
 
-    //Mover o cavalo dois para baixo e um para a esquerda
+    //Mover o bispo 5 casas para a diagonal direita
+    printf("\nMovimentação do Bispo: \n");    
+    movimentacaoBispo(5);
+
+   //Mover o cavalo dois para Cima e um para a direita usando loops complexos
     printf("\nMovimentação do Cavalo: \n");
-    
-    // loop para garantir a movimentação para a esquerda
-    do{ 
-        // loop para a garantir duas movimentações para baixo
-        for (j = 0; j < 2; j++){ 
-            printf("Baixo.\n");
+    for (int i = 0, j = 0; i < 2; i++, j++){
+        printf("Cima, ");
+        if(j == 0){ // Pula a iteração quando j é o
+            continue;
         }
-        printf("Esquerda.\n");
-        i++;        
-    }while (i < 1);    
+        printf("Direita");
+        printf("\n");
+    }
 
     return 0;
 }   
